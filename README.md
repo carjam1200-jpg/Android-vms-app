@@ -2,6 +2,8 @@
 
 ![Android Logo](https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg)
 
+![Linux Logo](https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png)
+
 An Android virtual machine management app project by **carjam1200-jpg**.
 
 ## About
@@ -12,6 +14,7 @@ Android VMs App aims to provide tools for creating, managing, and experimenting 
 
 - 🚀 Android VM management (planned)
 - 📱 Android-focused virtualization tools
+- 🐧 Linux compatibility and experimentation
 - ⚙️ Custom VM configurations
 - 🔧 Built for experimentation and learning
 
