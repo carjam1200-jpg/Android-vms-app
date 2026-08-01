@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Android VMs APK
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build-apk:
-    name: Build Android VMs APK
+    name: Build Debug APK
     runs-on: ubuntu-latest
 
     steps:
@@ -23,19 +23,34 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: "17"
           cache: gradle
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android build tools
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Install Android SDK packages
+        run: |
+          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Create Gradle wrapper if missing
+        run: |
+          if [ ! -f "./gradlew" ]; then
+            echo "Gradle wrapper missing, generating..."
+            gradle wrapper --gradle-version 8.7
+          fi
+
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
 
       - name: Build APK
-        run: |
-          chmod +x ./gradlew
-          ./gradlew clean assembleDebug --stacktrace
+        run: ./gradlew clean assembleDebug --stacktrace
+
+      - name: Run checks
+        run: ./gradlew check
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
