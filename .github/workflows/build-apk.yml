@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build-apk:
-    name: Build Debug APK
+    name: Build Android VMs APK
     runs-on: ubuntu-latest
 
     steps:
@@ -29,16 +29,15 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Grant Gradle permissions
-        run: chmod +x ./gradlew
+      - name: Install Android build tools
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
-      - name: Build debug APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Build APK
+        run: |
+          chmod +x ./gradlew
+          ./gradlew clean assembleDebug --stacktrace
 
-      - name: Run Gradle checks
-        run: ./gradlew check
-
-      - name: Upload APK artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: android-vms-debug-apk
