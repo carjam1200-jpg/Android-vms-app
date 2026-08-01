@@ -1,8 +1,8 @@
 """
 Android VMs App - Mini VM engine prototype
 
-This is a starting point inspired by the idea of QEMU-style VM configuration.
-It does not replace QEMU; it provides a simple framework for managing VM settings.
+A QEMU-inspired VM configuration layer.
+This generates a QEMU command that can boot an ISO image.
 """
 
 from dataclasses import dataclass
@@ -15,15 +15,25 @@ class VirtualMachine:
     memory_mb: int = 2048
     disk_image: str = "android.img"
     iso: str = "android.iso"
+    machine: str = "q35"
+
+    def qemu_command(self):
+        """Generate a QEMU boot command for this VM."""
+        return (
+            f"qemu-system-{self.cpu} "
+            f"-machine {self.machine} "
+            f"-m {self.memory_mb} "
+            f"-cdrom {self.iso} "
+            f"-drive file={self.disk_image},format=qcow2 "
+            "-boot d "
+            "-enable-kvm"
+        )
 
     def start(self):
         print(f"Starting VM: {self.name}")
-        print(f"CPU: {self.cpu}")
-        print(f"RAM: {self.memory_mb} MB")
-        print(f"Disk: {self.disk_image}")
-        print(f"ISO: {self.iso}")
+        print(self.qemu_command())
 
 
 if __name__ == "__main__":
-    vm = VirtualMachine("Android Test VM")
+    vm = VirtualMachine("Android Test VM", iso="android-x86.iso")
     vm.start()
