@@ -10,6 +10,14 @@ An Android virtual machine management app project by **carjam1200-jpg**.
 
 Android VMs App aims to provide tools for creating, managing, and experimenting with Android virtual machines.
 
+## Keep Android Open
+
+[🔗 Keep Android Open](https://keepandroidopen.org)
+
+> Google shouldn't choose something if its child Android chose it a while ago)
+
+![Android Logo](https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg)
+
 ## Features
 
 - 🚀 Android VM management (planned)
