@@ -16,6 +16,8 @@ Android VMs App aims to provide tools for creating, managing, and experimenting 
 
 > Google shouldn't choose something if its child Android chose it a while ago)
 
+📱 Related video: https://vm.tiktok.com/ZT9hffnq4Axpw-nrA2K/
+
 ![Android Logo](https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg)
 
 ## Features
